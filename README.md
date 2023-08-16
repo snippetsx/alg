@@ -1,1 +1,1 @@
-Alghoritms based repository
+Alghoritms and structures based repository
