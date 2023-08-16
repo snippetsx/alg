@@ -1,4 +1,3 @@
-// https://informatics.msk.ru/mod/statements/view.php?id=207&chapterid=55#1
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -14,24 +13,24 @@ struct stack* newstack(int capacity)
 {
     struct stack *pt = (struct stack*)malloc(sizeof(struct stack));
  
-    pt->maxsize = capacity;
-    pt->top = -1;
-    pt->items = (int*)malloc(sizeof(int) * capacity);
+    pt -> maxsize = capacity;
+    pt -> top = -1;
+    pt -> items = (int*)malloc(sizeof(int) * capacity);
  
     return pt;
 }
  
 
 int size(struct stack *pt) {
-    return pt->top + 1;
+    return pt -> top + 1;
 }
  
 int empty(struct stack *pt) {
-    return pt->top == -1;               
+    return pt -> top == -1;               
 }
 
 int isFull(struct stack *pt) {
-    return pt->top == pt->maxsize - 1;
+    return pt -> top == pt -> maxsize - 1;
 }
  
 
@@ -40,7 +39,7 @@ void push(struct stack *pt, int x)
  
     printf("ok\n");
  
-    pt->items[++pt->top] = x;
+    pt -> items[++pt -> top] = x;
 }
  
 int top(struct stack *pt)
@@ -49,7 +48,7 @@ int top(struct stack *pt)
         printf("error\n");
     }
     else {
-        return pt->items[pt->top];
+        return pt -> items[pt->top];
     }
 }
  
