@@ -1,9 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdbool.h>
 #include <list.h>
 
-void list_push(t_list **head, int x){
+void list_push(t_list **head, int x)
+{
     t_list *tmp;
 
     if (!head || !(tmp = (t_list*) malloc(sizeof(t_list))))
@@ -13,48 +13,59 @@ void list_push(t_list **head, int x){
     *head = tmp;
 }
 
-int list_pop(t_list **head){
+int list_pop(t_list **head)
+{
     t_list* prev = NULL;
-    int x;
+    int ret;
 
-    if (head == NULL) {
+    if (head == NULL)
+    {
         return -1;
     }
     prev = *head;
-    x = prev->val;
-    (*head) = (*head)->next;
+    ret = prev->val;
+    (*head) = prev->next;
     free(prev);
-    return x;
+    return ret;
 }
 
-void list_insert(t_list *head, int n, int val){
-    int i = 0;
+void list_insert(t_list *head, unsigned n, int val)
+{
+    unsigned i = 0;
+    
     t_list *tmp;
-    while (i < n && head->next) {
+    while (i < n && head->next)
+    {
         head = head->next;
         i++;
     }
     tmp = (t_list*) malloc(sizeof(t_list));
     tmp->val = val;
-    if (head->next) {
+    if (head->next)
+    {
         tmp->next = head->next;
     }
-    else {
+    else
+    {
         tmp->next = NULL;
     }
     head->next = tmp;
 }
 
-void list_remove(t_list **head) {
-    while ((*head)->next) {
+void list_remove(t_list **head)
+{
+    while ((*head)->next)
+    {
         list_pop(head);
         *head = (*head)->next;
     }
     free(*head);
 }
 
-void list_print(const t_list *head) {
-    while (head) {
+void list_print(const t_list *head)
+{
+    while (head)
+    {
         printf("%d ", head->val);
         head = head->next;
     }
