@@ -7,7 +7,7 @@ void list_push(t_list **head, int x);
 
 int list_pop(t_list **head);
 
-void list_insert(t_list *head, int n, int val);
+void list_insert(t_list *head, unsigned n, int val);
 
 void list_remove(t_list **head);
 
