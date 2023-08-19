@@ -18,7 +18,7 @@ int list_pop(t_list **head){
     int x;
 
     if (head == NULL) {
-        exit(-1);
+        return -1;
     }
     prev = *head;
     x = prev->val;
