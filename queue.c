@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <queue.h>
  
 struct queue {
         int *data;  
@@ -47,20 +48,4 @@ int dequeue (struct queue *q)
         }
 
         return a;
-}
-int main(){
-    struct queue *q =  init(10);
-    char s[4] = "";
-    int x;
-    while (strcmp(s, "exit" ) != 0){
-        scanf("%s", &s);
-        if(strcmp(s, "push") == 0){
-            scanf("%d", &x);
-            enqueue(q, x);
-        }
-        else if(strcmp(s, "pop") == 0){
-           dequeue(q);
-        }
-    }
-    printf("bye");
 }
