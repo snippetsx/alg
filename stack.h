@@ -1,20 +1,14 @@
-struct stack
-{
-    int maxsize;
-    int top;
-    int *items;
-};
+#include <stdlib.h>
 
-struct stack* newstack(int capacity);
+typedef struct s_stack {
+    int val;
+    struct s_stack* next;
+} t_stack;
 
-int size(struct stack *pt);
+size_t stack_size(const t_stack *head);
 
-int empty(struct stack *pt);
+void stack_push(t_stack **head, int x);
 
-int isFull(struct stack *pt);
+int stack_pop(t_stack **head);
 
-void push(struct stack *pt, int x);
-
-int top(struct stack *pt);
-
-int pop(struct stack *pt);
+void stack_foreach(const t_stack *head, void (*f)(int));

@@ -1,47 +1,63 @@
-#include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <stack.h>
 
-
-int size(struct stack *pt) {
-    return pt -> top + 1;
-}
- 
-int empty(struct stack *pt) {
-    return pt -> top == -1;               
-}
-
-int isFull(struct stack *pt) {
-    return pt -> top == pt -> maxsize - 1;
-}
- 
-
-void push(struct stack *pt, int x)
+size_t stack_size(const t_stack *head)
 {
- 
-    printf("ok\n");
- 
-    pt -> items[++pt -> top] = x;
+    size_t cnt = 0;
+
+    while (head)
+    {
+        cnt++;
+        head = head->next;
+    }
+    return cnt;
 }
- 
-int top(struct stack *pt)
+
+t_stack *stack_new_element(int value, t_stack *next)
 {
-    if (empty(pt) != 0){
-        printf("error\n");
+    t_stack *element = (t_stack*)malloc(sizeof(t_stack));
+    
+    if (element)
+    {
+        element->val = value;
+        element->next = next;
     }
-    else {
-        return pt -> items[pt->top];
-    }
+    return element;
 }
- 
-int pop(struct stack *pt)
+
+void stack_push(t_stack **head, int val)
 {
-    if (empty(pt) != 0){
-        printf("error\n");
-    }
-    else{
-        printf("ok\n");
-        return pt -> items[pt -> top--];
+    t_stack *tmp;
+
+    if (!head || !(tmp = stack_new_element(val, *head)))
+        return ;
+    *head = tmp;
+}
+
+int stack_pop(t_stack **head, int *ret)
+{
+    t_stack* prev = NULL;
+
+    if (head == NULL || *head == NULL)
+        return -1;
+
+    prev = *head;
+    if (ret)
+        *ret = prev->val;
+    (*head) = prev->next;
+    free(prev);
+    
+    return 0;
+}
+
+void stack_foreach(const t_stack *head, void (*f)(int))
+{
+    if (!f)
+        return ;
+    while (head)
+    {
+        f(head->val);
+        head = head->next;
     }
 }
