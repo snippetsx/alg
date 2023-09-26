@@ -37,8 +37,3 @@ int gray(int n)
 {
 	return n ^ (n >> 1);
 }
-
-
-// mind storm
-// process
-// seed /// why ?
