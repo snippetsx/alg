@@ -7,8 +7,6 @@ typedef struct btree_s
 
 btree_t *b_new_node(int item);
 
-void bfs(btree_t *root);
-
 void b_insert(btree_t **root, int key);
 
 btree_t b_min(btree_t **root);
