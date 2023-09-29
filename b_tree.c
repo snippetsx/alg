@@ -67,44 +67,52 @@ void b_insert(btree_t **root, int key)
     }
 }
 
-btree_t b_min(btree_t **root)
+btree_t *b_min(btree_t *root)
 {
-    btree_t *walker;
-    walker = *root;
-    while(walker->left)
+    btree_t *walker = root;
+
+    if (!root)
+    {
+        return NULL;
+    }
+
+    while (walker->left)
     {
         walker = walker->left;
     }
-    return *walker;
+    return walker;
 }
 
-btree_t b_max(btree_t **root)
+btree_t *b_max(btree_t *root)
 {
-    btree_t *walker;
-    walker = *root;
-    while(walker->right)
+    btree_t *walker = root;
+
+    if (!root)
+    {
+        return NULL;
+    }
+    
+    while (walker->right)
     {
         walker = walker->right;
     }
-    return *walker;
+    return walker;
 }
 
-int b_search(btree_t **root, int value) //Почти бинпоиск. Если элемент существует, выведет 1, иначе 0
+btree_t *b_search(btree_t *root, int value) //Почти бинпоиск. Если элемент существует, выведет 1, иначе 0
 {
-    btree_t *walker;
-    walker = *root;
-    while(walker){
-        if(walker->key < value)
+    btree_t *walker = root;
+
+    while (walker && walker->key != value)
+    {
+        if (walker->key < value)
         {
             walker = walker->left;
         }
-        if (walker->key > value)
+        else if (walker->key > value)
         {
             walker = walker->left;
-        }
-        else{
-            return NULL;
         }
     }
-    return 0;
+    return walker;
 }

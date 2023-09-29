@@ -9,8 +9,8 @@ btree_t *b_new_node(int item);
 
 void b_insert(btree_t **root, int key);
 
-btree_t b_min(btree_t **root);
+btree_t *b_min(btree_t *root);
 
-btree_t b_max(btree_t **root);
+btree_t *b_max(btree_t *root);
 
-int b_search(btree_t **root, int value);
+btree_t *b_search(btree_t *root, int value);
