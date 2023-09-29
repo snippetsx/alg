@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <b_tree.h>
 
-
 // stdin
 // stdout
 // stderr
@@ -13,10 +12,14 @@
 
 
 btree_t *b_new_node(int item) {
-  btree_t *temp = (btree_t *)malloc(sizeof(btree_t));
-  temp->key = item;
-  temp->left = temp->right = NULL;
-  return temp;
+    btree_t *temp = (btree_t *)malloc(sizeof(btree_t));
+    if(!temp)
+    {
+        return NULL;
+    }
+    temp->key = item;
+    temp->left = temp->right = NULL;
+    return temp;
 }
 
 // void b_print(btree_t *root) {
