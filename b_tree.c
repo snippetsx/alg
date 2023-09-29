@@ -25,7 +25,6 @@ void b_insert(btree_t **root, int key)
 {
     btree_t *node = NULL;
     btree_t *walker;
-    // int inserted = 0;
 
     if (root == NULL)
         return ;
@@ -104,9 +103,8 @@ int b_search(btree_t **root, int value) //Почти бинпоиск. Если 
             walker = walker->left;
         }
         else{
-            return 1;
+            return NULL;
         }
     }
     return 0;
-
 }
