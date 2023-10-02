@@ -99,7 +99,7 @@ btree_t *b_max(btree_t *root)
     return walker;
 }
 
-btree_t *b_search(btree_t *root, int value) //Почти бинпоиск. Если элемент существует, выведет 1, иначе 0
+btree_t *b_search(btree_t *root, int value)
 {
     btree_t *walker = root;
 

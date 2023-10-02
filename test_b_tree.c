@@ -1,6 +1,6 @@
 #include <b_tree.h>
 
-int main()
+int b_tree_test1()
 {
     btree_t *root;
     b_insert(&root, 20);
@@ -13,6 +13,9 @@ int main()
     b_insert(&root, 44);
     b_insert(&root, 76);
     b_insert(&root, 24);
-
-    
+    printf("%d", b_search(root, 4));
+    printf("%d", b_search(root, 50));
+    printf("%d", b_min(root));
+    printf("%d", b_min(root));
+    return 0;
 }
