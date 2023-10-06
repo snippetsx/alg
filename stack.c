@@ -35,7 +35,7 @@ void stack_push(t_stack **head, char val)
     *head = tmp;
 }
 
-char stack_pop(t_stack **head)
+int stack_pop(t_stack **head)
 {
     t_stack* prev = NULL;
     char ret;

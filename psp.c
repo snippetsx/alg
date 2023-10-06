@@ -1,14 +1,26 @@
 #include <stack.h>
 #include <stdio.h>
 
-
 int main()
 {
     t_stack *stck;
-    int n;
-    scanf("%d", &n);
-    char arr[n];
-    scanf("%s", &arr);
-    stack_char_importer(arr, n, stck);
-    stack_foreach(*stck, printf);
+    char ch;
+    int n = 0;
+    while (ch != '\n')
+    {
+        ch = getchar();
+        if(ch == '(')
+            stack_push(&stck, '(');
+        else if (ch == ')' && stack_pop(&stck) == -1)
+            break;
+    }
+    if(stack_pop(&stck) == -1)
+    {
+        printf("Right");
+    }
+    else
+    {
+        printf("Not right");
+    }
+    return 0;
 }

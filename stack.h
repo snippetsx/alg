@@ -11,6 +11,6 @@ size_t stack_size(const t_stack *head);
 
 void stack_push(t_stack **head, char x);
 
-void stack_foreach(const t_stack *head, void (*f)(char));
+int stack_pop(t_stack **head);
 
 void stack_foreach(const t_stack *head, void (*f)(char));
