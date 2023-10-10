@@ -14,7 +14,7 @@ size_t stack_size(const t_stack *head)
     return cnt;
 }
 
-t_stack *stack_new_element(char value, t_stack *next)
+t_stack *stack_new_element(stack_val_t value, t_stack *next)
 {
     t_stack *element = (t_stack*)malloc(sizeof(t_stack));
     
@@ -26,7 +26,7 @@ t_stack *stack_new_element(char value, t_stack *next)
     return element;
 }
 
-void stack_push(t_stack **head, char val)
+void stack_push(t_stack **head, stack_val_t val)
 {
     t_stack *tmp;
 
@@ -35,17 +35,16 @@ void stack_push(t_stack **head, char val)
     *head = tmp;
 }
 
-int stack_pop(t_stack **head)
+int stack_pop(t_stack **head, stack_val_t *ret)
 {
     t_stack* prev = NULL;
-    char ret;
 
     if (head == NULL || *head == NULL)
-    {
         return -1;
-    }
+
     prev = *head;
-    ret = prev->val;
+    if (ret)
+        *ret = prev->val;
     (*head) = prev->next;
     free(prev);
     
@@ -59,7 +58,7 @@ int stack_top(t_stack *head)
     return head->val; 
 }
 
-void stack_foreach(const t_stack *head, void (*f)(char))
+void stack_foreach(const t_stack *head, void (*f)(stack_val_t))
 {
     if (!f)
         return ;
@@ -68,4 +67,11 @@ void stack_foreach(const t_stack *head, void (*f)(char))
         f(head->val);
         head = head->next;
     }
+}
+
+stack_val_t stack_top(t_stack *head)
+{
+    if (!head)
+        return DEFAULT_STACK_VAL;
+    return head->val; 
 }

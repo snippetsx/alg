@@ -2,6 +2,7 @@
 
 #define DEFAULT_STACK_VAL 0
 
+typedef char stack_val_t;
 typedef struct s_stack {
     char val;
     struct s_stack* next;
@@ -9,8 +10,8 @@ typedef struct s_stack {
 
 size_t stack_size(const t_stack *head);
 
-void stack_push(t_stack **head, char x);
+void stack_push(t_stack **head, stack_val_t x);
 
-int stack_pop(t_stack **head);
+int stack_pop(t_stack **head, stack_val_t *ret);
 
-void stack_foreach(const t_stack *head, void (*f)(char));
+void stack_foreach(const t_stack *head, void (*f)(stack_val_t));

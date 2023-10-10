@@ -1,26 +1,45 @@
 #include <stack.h>
 #include <stdio.h>
+#include <unistd.h>
+
+// ({[})]
+// ((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((([[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]][)]))))))))))))))))))))))))))))))))))))))))))))))))[{{{{{{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}}}}]
 
 int main()
 {
-    t_stack *stck;
-    char ch;
+    t_stack *stck = NULL;
     int n = 0;
+    char ch = 0;
+    char tmp = 0;
+    int wrong = 0;
+
+    ch = getchar();
     while (ch != '\n')
     {
+        if (ch == '{' || ch == '[' || ch == '(')
+        {
+            stack_push(&stck, ch);
+        }
+        else // if (ch == '}' || ch == ']' || ch == ')')
+        {
+            tmp = stack_top(stck);
+            if ((ch == '}' && tmp == '{') ||
+                (ch == ']' && tmp == '[') ||
+                (ch == ')' && tmp == '('))
+            {
+                stack_pop(&stck, NULL);
+            }
+            else
+            {
+                wrong = 1;
+                break;
+            }
+        }
         ch = getchar();
-        if(ch == '(')
-            stack_push(&stck, '(');
-        else if (ch == ')' && stack_pop(&stck) == -1)
-            break;
     }
-    if(stack_pop(&stck) == -1)
-    {
-        printf("Right");
-    }
+    if (stack_size(stck) > 0 || wrong)
+        puts("Not right");
     else
-    {
-        printf("Not right");
-    }
+        puts("Right");
     return 0;
 }
