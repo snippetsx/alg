@@ -51,6 +51,13 @@ int stack_pop(t_stack **head, int *ret)
     return 0;
 }
 
+int stack_top(t_stack *head)
+{
+    if (!head)
+        return DEFAULT_STACK_VAL;
+    return head->val; 
+}
+
 void stack_foreach(const t_stack *head, void (*f)(int))
 {
     if (!f)
