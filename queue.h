@@ -1,15 +1,18 @@
-struct queue {
-        int *data;  
-        int low;
-        int high;
-        int count;
-        int max;
-};
+#include <stdlib.h>
 
-struct queue *init(size_t size);
+#define DEFAULt_queue_VAL 0
 
-void enqueue (struct queue *q, int a);
+typedef struct s_queue {
+    int val;
+    struct s_queue* next;
+} t_queue;
 
-int dequeue (struct queue *q);
+size_t stack_size(const t_queue *head);
 
+void stack_push(t_queue **head, int x);
 
+int stack_pop(t_queue **head, int *ret);
+
+int stack_top(t_queue *head);
+
+void stack_foreach(const t_queue *head, void (*f)(int));

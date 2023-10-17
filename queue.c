@@ -1,51 +1,90 @@
-#include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <queue.h>
- 
-struct queue {
-        int *data;  
-        int low;
-        int high;
-        int count;
-        int max;
-};
 
-struct queue *init(size_t size)
+size_t queue_size(const t_queue *head)
 {
-        struct queue * q = calloc (1, sizeof (struct queue));
-        q->data = calloc (size, sizeof (int));
-        q->low = q->high = size - 1;
-        q->max = size;
+    size_t cnt = 0;
 
-        return q;
+    while (head)
+    {
+        cnt++;
+        head = head->next;
+    }
+    return cnt;
 }
 
-void enqueue (struct queue *q, int a)
+t_queue *queue_new_element(int value, t_queue *next)
 {
-
-        if (q->count == q->max) {
-                printf ("not enough queue size\n");
-                return;
-        }
-
-        q->data[q->low--] = a;
-        q->count++;
-
-        if (q->low < 0) {
-                q->low = q->max - 1;
-        }
-
+    t_queue *element = (t_queue*)malloc(sizeof(t_queue));
+    
+    if (element)
+    {
+        element->val = value;
+        element->next = next;
+    }
+    return element;
 }
 
-int dequeue (struct queue *q)
+void queue_push(t_queue **head, int val)
 {
-        int a = q->data[q->high--];
-        q->count--;
+    t_queue *tmp;
 
-        if (q->high < 0) {
-                q->high = q->max - 1;
-        }
+    if (!head || !(tmp = queue_new_element(val, *head)))
+        return ;
+    *head = tmp;
+}
 
-        return a;
+int queue_pop(t_queue **head, int *ret)
+{
+    t_queue* prev = NULL;
+
+    if (head == NULL || *head == NULL)
+        return -1;
+
+    prev = *head;
+    if (ret)
+        *ret = prev->val;
+    (*head) = prev->next;
+    free(prev);
+    
+    return 0;
+}
+
+int queue_top(t_queue *head)
+{
+    if (!head)
+        return DEFAULT_QUEUE_VAL;
+    return head->val; 
+}
+
+void queue_foreach(const t_queue *head, void (*f)(int))
+{
+    if (!f)
+        return ;
+    while (head)
+    {
+        f(head->val);
+        head = head->next;
+    }
+}
+
+void queue_pop(t_queue** head, int val)
+{
+    t_queue* temp = (t_queue*)malloc(sizeof(t_queue));
+    t_queue* iterator = *head;
+
+    temp->val = val;
+    temp->next = NULL;
+
+    if (iterator == NULL)
+    {
+        *head = temp;
+        return;
+    }
+    while (iterator->next != NULL)
+    {
+        iterator = iterator->next;
+    }
+    iterator->next = temp;
 }
