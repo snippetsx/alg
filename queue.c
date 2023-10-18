@@ -26,14 +26,6 @@ t_queue *queue_new_element(int value, t_queue *next)
     return element;
 }
 
-void queue_push(t_queue **head, int val)
-{
-    t_queue *tmp;
-
-    if (!head || !(tmp = queue_new_element(val, *head)))
-        return ;
-    *head = tmp;
-}
 
 int queue_pop(t_queue **head, int *ret)
 {
@@ -69,7 +61,7 @@ void queue_foreach(const t_queue *head, void (*f)(int))
     }
 }
 
-void queue_pop(t_queue** head, int val)
+void queue_push(t_queue** head, int val)
 {
     t_queue* temp = (t_queue*)malloc(sizeof(t_queue));
     t_queue* iterator = *head;

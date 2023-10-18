@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
-#define DEFAULt_queue_VAL 0
+#define DEFAULT_QUEUE_VAL 0
 
 typedef struct s_queue {
     int val;
